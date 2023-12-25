@@ -4,11 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>玩家祝福弹幕</title>
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/Jimmyzm0/ttk/main/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/您的用户名/仓库名@分支/文件夹路径/您的.css文件">
 </head>
 <body>
     <div id="danmuContainer"></div>
 
-    <script src="https://raw.githubusercontent.com/Jimmyzm0/ttk/main/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/您的用户名/仓库名@分支/文件夹路径/您的.js文件"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCSV();
+        });
+
+        function loadCSV() {
+            const csvUrl = 'https://cdn.jsdelivr.net/gh/您的用户名/仓库名@分支/文件夹路径/您的.csv文件';
+
+            fetch(csvUrl)
+            .then(response => response.text())
+            .then(text => {
+                const wishes = text.split('\n');
+                wishes.forEach((wish, index) => {
+                    setTimeout(() => {
+                        createDanmu(wish);
+                    }, index * 1000); // 每条祝福间隔1秒
+                });
+            })
+            .catch(error => {
+                console.error('加载CSV文件出错:', error);
+            });
+        }
+
+        function createDanmu(text) {
+            // 这里是您的 createDanmu 函数的实现
+        }
+    </script>
 </body>
 </html>
