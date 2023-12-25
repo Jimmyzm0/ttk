@@ -3,17 +3,73 @@
 <head>
     <title>玩家祝福弹幕</title>
     <style>
-        /* 这里将添加CSS样式 */
+        #danmuContainer {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-color: black;
+            overflow: hidden;
+            color: white;
+            font-size: 20px;
+        }
+
+        .danmu {
+            position: absolute;
+            white-space: nowrap;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
     <div id="danmuContainer"></div>
 
-    <input type="file" id="fileInput" accept=".csv">
-    <button onclick="loadCSV()">加载祝福</button>
-
     <script>
-        // 这里将添加JavaScript代码
+        // 假设这是您的CSV文件的URL
+        const csvUrl = 'https://raw.githubusercontent.com/[用户名]/[仓库名]/[分支名]/[文件路径]';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCSV();
+        });
+
+        function loadCSV() {
+            fetch(csvUrl)
+            .then(response => response.text())
+            .then(text => {
+                const wishes = text.split('\n');
+                wishes.forEach((wish, index) => {
+                    setTimeout(() => {
+                        createDanmu(wish);
+                    }, index * 1000); // 每条祝福间隔1秒
+                });
+            })
+            .catch(error => {
+                console.error('加载CSV文件出错:', error);
+            });
+        }
+
+        function createDanmu(text) {
+            const danmu = document.createElement('div');
+            danmu.classList.add('danmu');
+            danmu.textContent = text;
+            danmu.style.top = Math.random() * 380 + 'px'; // 随机高度
+            danmu.style.left = '100%';
+            danmu.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`; // 随机颜色
+
+            const danmuContainer = document.getElementById('danmuContainer');
+            danmuContainer.appendChild(danmu);
+
+            const speed = Math.random() * 10 + 5; // 随机速度
+            const move = () => {
+                const currentLeft = parseFloat(danmu.style.left);
+                if (currentLeft < -danmu.offsetWidth) {
+                    danmuContainer.removeChild(danmu);
+                } else {
+                    danmu.style.left = currentLeft - speed + 'px';
+                    requestAnimationFrame(move);
+                }
+            };
+            requestAnimationFrame(move);
+        }
     </script>
 </body>
 </html>
