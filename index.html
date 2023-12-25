@@ -58,7 +58,7 @@
             const danmuContainer = document.getElementById('danmuContainer');
             danmuContainer.appendChild(danmu);
 
-            const speed = Math.random() * 10 + 5; // 随机速度
+            const speed = 3; // 固定速度
             const move = () => {
                 const currentLeft = parseFloat(danmu.style.left);
                 if (currentLeft < -danmu.offsetWidth) {
@@ -66,10 +66,10 @@
                 } else {
                     danmu.style.left = currentLeft - speed + 'px';
                     requestAnimationFrame(move);
-                }
-            };
-            requestAnimationFrame(move);
         }
+    };
+    requestAnimationFrame(move);
+}
     </script>
 </body>
 </html>
