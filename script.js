@@ -30,7 +30,7 @@ function createDanmu(text) {
     const danmuContainer = document.getElementById('danmuContainer');
     danmuContainer.appendChild(danmu);
 
-    const speed = Math.random() * 3 + 2; // 减慢速度，范围在2到5之间
+    const speed = 2; // 固定的慢速度
     const move = () => {
         const currentLeft = parseFloat(danmu.style.left);
         if (currentLeft < -danmu.offsetWidth) {
@@ -42,3 +42,4 @@ function createDanmu(text) {
     };
     requestAnimationFrame(move);
 }
+
