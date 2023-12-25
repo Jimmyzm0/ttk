@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     height: 400px;
-    background-color: black;
+    background-color: transparent; /* 设置背景透明 */
     overflow: hidden;
     color: white;
     font-size: 20px;
