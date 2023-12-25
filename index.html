@@ -1,75 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>玩家祝福弹幕</title>
-    <style>
-        #danmuContainer {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            background-color: black;
-            overflow: hidden;
-            color: white;
-            font-size: 20px;
-        }
-
-        .danmu {
-            position: absolute;
-            white-space: nowrap;
-            opacity: 0.8;
-        }
-    </style>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/您的用户名/仓库名/分支名/路径/到/您的.css文件">
 </head>
 <body>
     <div id="danmuContainer"></div>
 
-    <script>
-        // 假设这是您的CSV文件的URL
-        const csvUrl = 'https://raw.githubusercontent.com/Jimmyzm0/ttk/main/zhufu.csv';
-
-        document.addEventListener('DOMContentLoaded', function() {
-            loadCSV();
-        });
-
-        function loadCSV() {
-            fetch(csvUrl)
-            .then(response => response.text())
-            .then(text => {
-                const wishes = text.split('\n');
-                wishes.forEach((wish, index) => {
-                    setTimeout(() => {
-                        createDanmu(wish);
-                    }, index * 1000); // 每条祝福间隔1秒
-                });
-            })
-            .catch(error => {
-                console.error('加载CSV文件出错:', error);
-            });
-        }
-
-        function createDanmu(text) {
-            const danmu = document.createElement('div');
-            danmu.classList.add('danmu');
-            danmu.textContent = text;
-            danmu.style.top = Math.random() * 380 + 'px'; // 随机高度
-            danmu.style.left = '100%';
-            danmu.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`; // 随机颜色
-
-            const danmuContainer = document.getElementById('danmuContainer');
-            danmuContainer.appendChild(danmu);
-
-            const speed = 3; // 固定速度
-            const move = () => {
-                const currentLeft = parseFloat(danmu.style.left);
-                if (currentLeft < -danmu.offsetWidth) {
-                    danmuContainer.removeChild(danmu);
-                } else {
-                    danmu.style.left = currentLeft - speed + 'px';
-                    requestAnimationFrame(move);
-        }
-    };
-    requestAnimationFrame(move);
-}
-    </script>
+    <script src="https://raw.githubusercontent.com/您的用户名/仓库名/分支名/路径/到/您的.js文件"></script>
 </body>
 </html>
