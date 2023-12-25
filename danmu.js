@@ -1,24 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
     const danmuContainer = document.getElementById('danmu-container');
+    const interval = 2000; // 每 2 秒出現一條彈幕
 
     fetch('danmu.csv')
         .then(response => response.text())
         .then(text => {
-            const danmus = parseCSV(text);
-            danmus.forEach(danmu => {
+            const danmus = text.split("\n");
+            danmus.forEach((danmu, index) => {
                 setTimeout(() => {
-                    createDanmu(danmu.text);
-                }, danmu.timestamp);
+                    createDanmu(danmu);
+                }, index * interval);
             });
         });
-
-    function parseCSV(csvText) {
-        const lines = csvText.split("\n");
-        return lines.map(line => {
-            const [timestamp, text] = line.split(",");
-            return { timestamp: parseInt(timestamp, 10), text: text.trim() };
-        });
-    }
 
     function createDanmu(text) {
         const danmuDiv = document.createElement('div');
