@@ -23,14 +23,14 @@ function createDanmu(text) {
     const danmu = document.createElement('div');
     danmu.classList.add('danmu');
     danmu.textContent = text;
-    danmu.style.top = Math.random() * 380 + 'px'; // 随机高度
+    danmu.style.top = Math.random() * (380 - 20) + 'px'; // 随机高度，确保弹幕不会超出容器底部
     danmu.style.left = '100%';
     danmu.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`; // 随机颜色
 
     const danmuContainer = document.getElementById('danmuContainer');
     danmuContainer.appendChild(danmu);
 
-    const speed = Math.random() * 10 + 5; // 随机速度
+    const speed = Math.random() * 3 + 2; // 减慢速度，范围在2到5之间
     const move = () => {
         const currentLeft = parseFloat(danmu.style.left);
         if (currentLeft < -danmu.offsetWidth) {
