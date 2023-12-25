@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const danmuContainer = document.getElementById('danmu-container');
     const interval = 2000; // 每 2 秒出現一條彈幕
 
-    fetch('danmu.csv')
+    // 使用相對路徑來加載 CSV 文件
+    fetch('./danmu.csv')  // 假設 danmu.csv 與 HTML 文件位於同一目錄
         .then(response => response.text())
         .then(text => {
             const danmus = text.split("\n");
