@@ -12,4 +12,24 @@
     position: absolute;
     white-space: nowrap;
     opacity: 0.8;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* 添加文本阴影，增加可读性 */
+    padding: 5px; /* 轻微的内填充，增加辨识度 */
+    border-radius: 5px; /* 轻微的圆角边框 */
+    max-width: 90%; /* 限制最大宽度，避免过长的文本占据整个屏幕 */
+    overflow: hidden; /* 超出部分隐藏 */
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+}
+
+/* 动画效果 */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.danmu {
+    animation: slideIn 10s linear infinite; /* 应用滑入动画，持续时间10秒 */
 }
